@@ -8,6 +8,10 @@ namespace FriendlyBank
 {
 	public class BabyAccount : Account
 	{
+		public BabyAccount(string inName, int inBalance) : base(inName, inBalance)
+		{
+		}
+
 		public override string RudeLetterString()
 		{
 			return "Tell daddy you are overdrawn";

@@ -12,5 +12,6 @@ namespace FriendlyBank
 		bool WithdrawFunds(decimal amount);
 		decimal GetBalance();
 		string RudeLetterString();
+		string GetName();
 	}
 }
