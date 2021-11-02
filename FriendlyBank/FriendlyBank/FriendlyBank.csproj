@@ -46,6 +46,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="ArrayBank.cs" />
     <Compile Include="BabyAccount.cs" />
+    <Compile Include="Bank.cs" />
     <Compile Include="CustomerAccount.cs" />
     <Compile Include="DictionaryBank.cs" />
     <Compile Include="Enums.cs" />
