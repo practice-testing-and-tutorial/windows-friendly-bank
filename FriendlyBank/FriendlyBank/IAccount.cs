@@ -10,8 +10,10 @@ namespace FriendlyBank
 	{
 		void PayInFunds(decimal amount);
 		bool WithdrawFunds(decimal amount);
-		decimal GetBalance();
-		string RudeLetterString();
-		string GetName();
+		decimal Balance { get; }
+		string RudeLetterString { get; }
+		string Name { get; }
+		void Save(System.IO.TextWriter textOut);
+		bool Save(string filename);
 	}
 }

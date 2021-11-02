@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FriendlyBank
 {
-	class DictionaryBank : IBank
+	class DictionaryBank : Bank
 	{
 		Dictionary<string, IAccount> accounts = new Dictionary<string, IAccount>();
 
-		public IAccount FindAccount(string name)
+		public override IAccount FindAccount(string name)
 		{
 			if (accounts.ContainsKey(name))
 				return accounts[name];
@@ -18,12 +18,12 @@ namespace FriendlyBank
 			return null;
 		}
 
-		public bool StoreAccount(IAccount account)
+		public override bool StoreAccount(IAccount account)
 		{
-			if (accounts.ContainsKey(account.GetName()))
+			if (accounts.ContainsKey(account.Name))
 				return false;
 
-			accounts.Add(account.GetName(), account);
+			accounts.Add(account.Name, account);
 			return true;
 		}
 	}

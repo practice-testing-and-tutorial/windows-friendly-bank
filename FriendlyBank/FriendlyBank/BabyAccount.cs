@@ -12,10 +12,7 @@ namespace FriendlyBank
 		{
 		}
 
-		public override string RudeLetterString()
-		{
-			return "Tell daddy you are overdrawn";
-		}
+		public override string RudeLetterString => "Tell daddy you are overdrawn";
 
 		public override bool WithdrawFunds(decimal amount)
 		{

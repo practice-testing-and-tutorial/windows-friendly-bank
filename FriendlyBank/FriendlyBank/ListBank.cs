@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FriendlyBank
 {
-	class ListBank : IBank
+	class ListBank : Bank
 	{
 		List<IAccount> accounts = new List<IAccount>();
 
-		public IAccount FindAccount(string name)
+		public override IAccount FindAccount(string name)
 		{
 			int length = accounts.Count;
 
@@ -19,7 +19,7 @@ namespace FriendlyBank
 				if (accounts[i] == null)
 					continue;
 
-				if (accounts[i].GetName() == name)
+				if (accounts[i].Name == name)
 				{
 					return accounts[i];
 				}
@@ -28,7 +28,7 @@ namespace FriendlyBank
 			return null;
 		}
 
-		public bool StoreAccount(IAccount account)
+		public override bool StoreAccount(IAccount account)
 		{
 			if (accounts.Contains(account))
 				return false;

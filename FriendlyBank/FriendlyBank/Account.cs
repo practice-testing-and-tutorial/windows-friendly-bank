@@ -39,10 +39,38 @@ namespace FriendlyBank
 			return true;
 		}
 
-		public string GetName() => name;
+		public string Name => name;
 
-		public decimal GetBalance() => balance;
+		public decimal Balance => balance;
 
-		public abstract string RudeLetterString();
+		public abstract string RudeLetterString { get; }
+
+		public void Save(System.IO.TextWriter textOut)
+		{
+			textOut.WriteLine(Name);
+			textOut.WriteLine(Balance);
+		}
+
+		public bool Save(string filename)
+		{
+			System.IO.TextWriter textOut = null;
+
+			try
+			{
+				textOut = new System.IO.StreamWriter(filename);
+
+				Save(textOut);
+			}
+			catch
+			{
+				return false;
+			}
+			finally
+			{
+				if (textOut != null) textOut.Close();
+			}
+
+			return true;
+		}
 	}
 }

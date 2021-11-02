@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FriendlyBank
 {
-	public class ArrayBank : IBank
+	public class ArrayBank : Bank
 	{
 		private IAccount[] accounts;
 
@@ -15,14 +15,14 @@ namespace FriendlyBank
 			accounts = new IAccount[bankSize];
 		}
 
-		public IAccount FindAccount(string name)
+		public override IAccount FindAccount(string name)
 		{
 			for (int i = 0; i < accounts.Length; i++)
 			{
 				if (accounts[i] == null)
 					continue;
 
-				if (accounts[i].GetName() == name)
+				if (accounts[i].Name == name)
 				{
 					return accounts[i];
 				}
@@ -31,7 +31,7 @@ namespace FriendlyBank
 			return null;
 		}
 
-		public bool StoreAccount(IAccount account)
+		public override bool StoreAccount(IAccount account)
 		{
 			for (int i = 0; i < accounts.Length; i++)
 			{

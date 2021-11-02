@@ -7,20 +7,45 @@ using System.Threading.Tasks;
 
 namespace FriendlyBank
 {
-	class HashBank : IBank
+	class HashBank : Bank
 	{
 		Hashtable bankHashtable = new Hashtable();
 
-		public IAccount FindAccount(string name)
+		public override IAccount FindAccount(string name)
 		{
 			// use 'as' instead of casting so that if the object is not an IAccount (or any other wrong type) it will return a 'null'
 			return bankHashtable[name] as IAccount;
 		}
 
-		public bool StoreAccount(IAccount account)
+		public override bool StoreAccount(IAccount account)
 		{
-			bankHashtable.Add(account.GetName(), account);
+			bankHashtable.Add(account.Name, account);
 			return true;
+		}
+
+		public void Save(System.IO.TextWriter textOut)
+		{
+			textOut.WriteLine(bankHashtable.Count);
+
+			foreach (CustomerAccount account in bankHashtable.Values)
+			{
+				account.Save(textOut);
+			}
+		}
+
+		public static HashBank Load(System.IO.TextReader textIn)
+		{
+			HashBank result = new HashBank();
+			string countString = textIn.ReadLine();
+			int count = int.Parse(countString);
+
+			for (int i = 0; i < count; i++)
+			{
+				CustomerAccount account = CustomerAccount.Load(textIn);
+				result.bankHashtable.Add(account.Name, account);
+			}
+
+			return result;
 		}
 	}
 }

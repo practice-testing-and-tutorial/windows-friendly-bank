@@ -11,29 +11,7 @@ namespace FriendlyBank
 		public CustomerAccount(string inName, decimal inBalance) : 
 			base (inName, inBalance){}
 
-		public override string RudeLetterString()
-		{
-			return "You are overdrawn";
-		}
-
-		public bool Save(string filename)
-		{
-			try
-			{
-				System.IO.TextWriter textOut =
-					new System.IO.StreamWriter(filename);
-
-				textOut.WriteLine(GetName());
-				textOut.WriteLine(GetBalance());
-				textOut.Close();
-			}
-			catch
-			{
-				return false;
-			}
-
-			return false;
-		}
+		public override string RudeLetterString	=> "You are overdrawn";
 
 		public static CustomerAccount Load(string filename)
 		{
@@ -55,6 +33,25 @@ namespace FriendlyBank
 			finally
 			{
 				if (textIn != null) textIn.Close();
+			}
+
+			return result;
+		}
+
+		public static CustomerAccount Load(System.IO.TextReader textIn)
+		{
+			CustomerAccount result;
+
+			try
+			{
+				string name = textIn.ReadLine();
+				string balanceText = textIn.ReadLine();
+				decimal balance = decimal.Parse(balanceText);
+				result = new CustomerAccount(name, balance);
+			}
+			catch
+			{
+				return null;
 			}
 
 			return result;
