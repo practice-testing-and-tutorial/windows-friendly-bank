@@ -8,8 +8,16 @@ namespace FriendlyBank
 {
 	public class BabyAccount : Account
 	{
-		public BabyAccount(string inName, int inBalance) : base(inName, inBalance)
+		private string _parentName;
+
+		public BabyAccount(string inName, int inBalance, string parentName) : base(inName, inBalance)
 		{
+			_parentName = parentName;
+		}
+
+		public BabyAccount(System.IO.StreamReader textIn) : base(textIn)
+		{
+			_parentName = textIn.ReadLine();
 		}
 
 		public override string RudeLetterString => "Tell daddy you are overdrawn";
@@ -20,6 +28,12 @@ namespace FriendlyBank
 				return false;
 
 			return base.WithdrawFunds(amount);
+		}
+
+		public override void Save(System.IO.TextWriter textOut)
+		{
+			base.Save(textOut);
+			textOut.WriteLine(_parentName);
 		}
 	}
 }

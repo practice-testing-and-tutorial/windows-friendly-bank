@@ -24,6 +24,12 @@ namespace FriendlyBank
 
 		public Account(string inName) : this (inName, 0){}
 
+		public Account(System.IO.StreamReader textIn)
+		{
+			name = textIn.ReadLine();
+			balance = decimal.Parse(textIn.ReadLine());
+		}
+
 		public void PayInFunds(decimal amount)
 		{
 			balance += amount;
@@ -45,7 +51,7 @@ namespace FriendlyBank
 
 		public abstract string RudeLetterString { get; }
 
-		public void Save(System.IO.TextWriter textOut)
+		public virtual void Save(System.IO.TextWriter textOut)
 		{
 			textOut.WriteLine(Name);
 			textOut.WriteLine(Balance);
