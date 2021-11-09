@@ -13,7 +13,7 @@ namespace FriendlyBank
 		decimal GetBalance();
 		string RudeLetterString { get; }
 		string GetName();
-		bool SetName();
+		bool SetName(string inName);
 		void Save(System.IO.TextWriter textOut);
 		bool Save(string filename);
 	}
