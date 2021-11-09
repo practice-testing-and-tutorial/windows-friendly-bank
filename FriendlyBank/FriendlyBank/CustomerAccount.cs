@@ -11,6 +11,9 @@ namespace FriendlyBank
 		public CustomerAccount(string inName, decimal inBalance) : 
 			base (inName, inBalance){}
 
+		public CustomerAccount(System.IO.TextReader textIn) : 
+			base (textIn) {}
+
 		public override string RudeLetterString	=> "You are overdrawn";
 
 		public static CustomerAccount Load(string filename)

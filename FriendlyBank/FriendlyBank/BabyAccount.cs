@@ -15,7 +15,7 @@ namespace FriendlyBank
 			_parentName = parentName;
 		}
 
-		public BabyAccount(System.IO.StreamReader textIn) : base(textIn)
+		public BabyAccount(System.IO.TextReader textIn) : base(textIn)
 		{
 			_parentName = textIn.ReadLine();
 		}

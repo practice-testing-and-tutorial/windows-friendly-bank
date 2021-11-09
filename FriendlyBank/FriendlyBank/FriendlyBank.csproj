@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountFactory.cs" />
     <Compile Include="ArrayBank.cs" />
     <Compile Include="BabyAccount.cs" />
     <Compile Include="Bank.cs" />

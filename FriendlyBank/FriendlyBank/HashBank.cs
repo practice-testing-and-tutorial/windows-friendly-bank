@@ -27,8 +27,9 @@ namespace FriendlyBank
 		{
 			textOut.WriteLine(bankHashtable.Count);
 
-			foreach (CustomerAccount account in bankHashtable.Values)
+			foreach (IAccount account in bankHashtable.Values)
 			{
+				textOut.WriteLine(account.GetType().Name);
 				account.Save(textOut);
 			}
 		}
@@ -41,7 +42,8 @@ namespace FriendlyBank
 
 			for (int i = 0; i < count; i++)
 			{
-				CustomerAccount account = CustomerAccount.Load(textIn);
+				string className = textIn.ReadLine();
+				IAccount account = AccountFactory.MakeAccount(className, textIn);
 				result.bankHashtable.Add(account.Name, account);
 			}
 

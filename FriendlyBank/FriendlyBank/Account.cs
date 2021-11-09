@@ -24,7 +24,7 @@ namespace FriendlyBank
 
 		public Account(string inName) : this (inName, 0){}
 
-		public Account(System.IO.StreamReader textIn)
+		public Account(System.IO.TextReader textIn)
 		{
 			name = textIn.ReadLine();
 			balance = decimal.Parse(textIn.ReadLine());
