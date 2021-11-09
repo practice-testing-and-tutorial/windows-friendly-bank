@@ -10,6 +10,26 @@ namespace FriendlyBank
 	{
 		static void Main(string[] args)
 		{
+			IAccount account = new CustomerAccount("Bob", 100);
+
+			string newName;
+
+			while (true)
+			{
+				Console.Write("Enter new name: ");
+				newName = Console.ReadLine();
+
+				string reply = Account.ValidateName(newName);
+
+				if (reply.Length == 0)
+				{
+					break;
+				}
+
+				Console.WriteLine("Invalid name: " + reply);
+			}
+
+			account.SetName(newName);
 		}
 	}
 }
