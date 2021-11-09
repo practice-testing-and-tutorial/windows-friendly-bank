@@ -8,53 +8,78 @@ namespace FriendlyBank
 {
 	public abstract class Account : IAccount
 	{
-		private string name;
-		private decimal balance = 0;
+		private string _name;
+		private decimal _balance = 0;
 
 		public override string ToString()
 		{
-			return "Name: " + name + " balance: " + balance;
+			return "Name: " + _name + " balance: " + _balance;
 		}
 
 		public Account(string inName, decimal inBalance)
 		{
-			name = inName;
-			balance = inBalance;
+			_name = inName;
+			_balance = inBalance;
 		}
 
 		public Account(string inName) : this (inName, 0){}
 
 		public Account(System.IO.TextReader textIn)
 		{
-			name = textIn.ReadLine();
-			balance = decimal.Parse(textIn.ReadLine());
+			_name = textIn.ReadLine();
+			_balance = decimal.Parse(textIn.ReadLine());
 		}
 
 		public void PayInFunds(decimal amount)
 		{
-			balance += amount;
+			_balance += amount;
 		}
 
 		public virtual bool WithdrawFunds(decimal amount)
 		{
-			if (balance < amount)
+			if (_balance < amount)
 				return false;
 
-			balance -= amount;
+			_balance -= amount;
 
 			return true;
 		}
 
-		public string Name => name;
+		public string GetName() => _name;
 
-		public decimal Balance => balance;
+		public static string ValidateName(string name)
+		{
+			if (name == null)
+				return "Name parameter null";
+
+			string trimmedName = name.Trim();
+
+			if (trimmedName.Length == 0)
+				return "No text in name";
+
+			return "";
+		}
+
+		public bool SetName(string inName)
+		{
+			string reply = ValidateName(inName);
+
+			if (reply.Length > 0)
+				return false;
+
+			_name = inName.Trim();
+
+			return true;
+		}
+
+		public decimal GetBalance() => _balance;
 
 		public abstract string RudeLetterString { get; }
 
 		public virtual void Save(System.IO.TextWriter textOut)
 		{
-			textOut.WriteLine(Name);
-			textOut.WriteLine(Balance);
+			textOut.WriteLine(_name);
+			textOut.WriteLine(_balance);
 		}
 
 		public bool Save(string filename)

@@ -19,7 +19,7 @@ namespace FriendlyBank
 
 		public override bool StoreAccount(IAccount account)
 		{
-			bankHashtable.Add(account.Name, account);
+			bankHashtable.Add(account.GetName(), account);
 			return true;
 		}
 
@@ -44,7 +44,7 @@ namespace FriendlyBank
 			{
 				string className = textIn.ReadLine();
 				IAccount account = AccountFactory.MakeAccount(className, textIn);
-				result.bankHashtable.Add(account.Name, account);
+				result.bankHashtable.Add(account.GetName(), account);
 			}
 
 			return result;

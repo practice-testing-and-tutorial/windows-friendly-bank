@@ -20,10 +20,10 @@ namespace FriendlyBank
 
 		public override bool StoreAccount(IAccount account)
 		{
-			if (accounts.ContainsKey(account.Name))
+			if (accounts.ContainsKey(account.GetName()))
 				return false;
 
-			accounts.Add(account.Name, account);
+			accounts.Add(account.GetName(), account);
 			return true;
 		}
 	}

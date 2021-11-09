@@ -19,7 +19,7 @@ namespace FriendlyBank
 				if (accounts[i] == null)
 					continue;
 
-				if (accounts[i].Name == name)
+				if (accounts[i].GetName() == name)
 				{
 					return accounts[i];
 				}
